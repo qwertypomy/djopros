@@ -1,0 +1,21 @@
+<h1>{{ poll.title }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p>Created by <a href=""></a>{{ poll.user }}, {{ poll.pub_date }}</p>
+
+<ul>
+    {% for question in poll.question_set.all %}
+        <li>
+            {{ question.question_text }}
+            <ul>
+                {% for answer in answer_list.pop %}
+                    <li>
+                    {{ answer.answer_text }} - {{ answer.users.all.count|default:0 }}
+                    {% if answer in selected_answers %}
+                        +
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

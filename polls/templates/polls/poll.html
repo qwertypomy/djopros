@@ -1,0 +1,6 @@
+<h1>{{ poll.title }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p>{{ poll.question_set.all.count }} questions</p>
+<p>Created by <a href=""></a>{{ poll.user }}, {{ poll.pub_date }}</p>
+<a href={% url 'polls:question' poll.id poll.question_set.first.id %} {{poll.question_set.first}}>Start</a>
+<a href="{% url 'polls:poll_results' poll.id %}">Watch results</a>

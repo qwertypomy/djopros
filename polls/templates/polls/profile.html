@@ -1,0 +1,19 @@
+<h1>username: {{ user.username }}</h1>
+<p>email: {{ user.email }}</p>
+<p>first_name: {{ user.first_name }}</p>
+<p>last_name: {{ user.last_name }}</p>
+<p>last_login: {{ user.last_login }}</p>
+<p>date_joined: {{ user.date_joined }}</p>
+<p>is_active: {{ user.is_active }}</p>
+<p>is_staff: {{ user.is_staff }}</p>
+
+    <ul>
+    {% for poll in poll_list %}
+        <li>
+            <a href="/polls/{{ poll.id }}/">
+                {{ poll.title }}
+            </a>
+        {{ poll.polls_viewers.count }}
+        </li>
+    {% endfor %}
+    </ul>
