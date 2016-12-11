@@ -74,7 +74,6 @@ def question(request, poll_id, question_id):
     return HttpResponseRedirect(reverse('polls:poll_results', args=(poll_id,)))
 
 
-
 @login_required
 def vote(request, poll_id, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -90,3 +89,12 @@ def vote(request, poll_id, question_id):
         selected_answer.users.add(request.user)
         selected_answer.save()
     return HttpResponseRedirect(reverse('polls:question', args=(poll_id, question.id,)))
+
+
+class UserListView(LoginRequiredMixin, generic.ListView):
+    template_name = 'polls/user_list.html'
+    context_object_name = 'user_list'
+
+    def get_queryset(self):
+        answer = get_object_or_404(Answer, pk=self.kwargs['answer_id'])
+        return answer.users.all()

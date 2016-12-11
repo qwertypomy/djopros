@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'^polls/(?P<poll_id>[0-9]+)/questions/(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
     url(r'^users/(?P<user_id>[0-9]+)/$', views.user, name='user'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/questions/(?P<question_id>[0-9]+)/answers/(?P<answer_id>[0-9]+)/$',
+        views.UserListView.as_view(), name='user_list'),
 ]

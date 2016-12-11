@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'opros.wsgi.application'
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'djopros',
-    'USER': 'qwertypomy',
-    'PASSWORD': 'asdkasdjajsfjdklsfhskjflkddalsjdkdjal',
-    'HOST': '', # Set to empty string for localhost.
-    'PORT': '', # Set to empty string for default.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djopros',
+        'USER': 'qwertypomy',
+        'PASSWORD': 'asdkasdjajsfjdklsfhskjflkddalsjdkdjal',
+        'HOST': '', # Set to empty string for localhost.
+        'PORT': '', # Set to empty string for default.
     }
 }
 
