@@ -14,7 +14,9 @@
     <p>date_joined: {{ user1.date_joined }}</p>
     <p>is_active: {{ user1.is_active }}</p>
     <p>is_staff: {{ user1.is_staff }}</p>
-    <h2>Опросы:</h2>
+    {% if poll_list %}
+        <h2>Опросы:</h2>
+    {% endif %}
     <ul>
         {% for poll in poll_list %}
             <li>
