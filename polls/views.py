@@ -48,8 +48,8 @@ def user(request, user_id):
 
 @login_required
 def profile(request):
-    user = request.user
-    context = {'poll_list': Poll.objects.filter(user=user.id)}
+    user1 = request.user
+    context = {'poll_list': Poll.objects.filter(user=user1.id), 'user1': user1}
     return render(request, 'polls/profile.html', context)
 
 
