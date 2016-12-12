@@ -10,7 +10,10 @@
         <a href="#">Создать опрос</a>
         <a href="/profile/">Профиль: {{ user.username }}</a>
     {% endif %}
-<a href=""></a>
+<header>
+    {% block header %}{% endblock %}
+</header>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 <div id="content">
     {% block content %}{% endblock %}

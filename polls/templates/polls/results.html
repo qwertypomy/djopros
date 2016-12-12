@@ -2,11 +2,12 @@
 
 {% block title %}Результаты опроса {{ poll.title }}{% endblock %}
 
-{% block content %}
+{% block header %}
     <h1>{{ poll.title }}</h1>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <p>Created by <a href=""></a>{{ poll.user }}, {{ poll.pub_date }}</p>
+    <p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
+{% endblock %}
 
+{% block content %}
     <ul>
         {% for question in poll.question_set.all %}
             <li>

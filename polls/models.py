@@ -10,9 +10,6 @@ class Poll(models.Model):
     pub_date = models.DateTimeField('date published')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     users_watched_results = models.ManyToManyField(User, blank=True, related_name = 'watched_poll')
-    @property
-    def viewers_list(self):
-        return User.objects.filter(answer__question__poll__id=self.id)
 
     def __str__(self):
         return self.title

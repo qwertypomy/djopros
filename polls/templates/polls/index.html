@@ -2,11 +2,14 @@
 
 {% block title %}Opros{% endblock %}
 
-{% block content %}
+{% block header %}
     {% if not user.is_authenticated %}
         <a href="/soc/login/google-oauth2/?next=/">Login with Google account!</a>
     {% endif %}
+    <h1>Top Polls:</h1>
+{% endblock %}
 
+{% block content %}
     {% if top_polls %}
         <ul>
             {% for poll in top_polls %}

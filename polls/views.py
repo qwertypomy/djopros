@@ -15,17 +15,12 @@ class IndexView(generic.ListView):
     context_object_name = 'top_polls'
 
     def get_queryset(self):
-        ############ Разобраться с этим дерьмом
-        #return Poll.objects.all()
-        return sorted(Poll.objects.all(), key=lambda a: a.viewers_list.count())
-        ############
+        return sorted(Poll.objects.all(), key=lambda a: a.users_watched_results.count())[-5:]
 
 
 @login_required
 def poll(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    if poll.users_watched_results.filter(id=request.user.id):
-        return HttpResponseRedirect(reverse('polls:poll_results', args=(poll_id,)))
     context = {'poll':poll}
     return render(request, 'polls/poll.html', context)
 
@@ -81,10 +76,8 @@ def vote(request, poll_id, question_id):
         selected_answer = question.answer_set.get(pk=request.POST['choice'])
     except (KeyError, Answer.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'polls/question.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
+        context = { 'question': question, 'error_message': "You didn't select a choice.", }
+        return render(request, 'polls/question.html', context)
     else:
         selected_answer.users.add(request.user)
         selected_answer.save()
