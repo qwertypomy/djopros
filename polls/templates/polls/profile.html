@@ -1,20 +1,20 @@
 {% extends "polls/base.html" %}
 
-{% block title %}Profile: {{ user.username }}{% endblock %}
+{% block title %}Profile: {{ user1.username }}{% endblock %}
 
 {% block header %}
-    <h1>username: {{ user.username }}</h1>
+    <h1>username: {{ user1.username }}</h1>
 {% endblock %}
 
 {% block content %}
-    <p>email: {{ user.email }}</p>
-    <p>first_name: {{ user.first_name }}</p>
-    <p>last_name: {{ user.last_name }}</p>
-    <p>last_login: {{ user.last_login }}</p>
-    <p>date_joined: {{ user.date_joined }}</p>
-    <p>is_active: {{ user.is_active }}</p>
-    <p>is_staff: {{ user.is_staff }}</p>
-
+    <p>email: {{ user1.email }}</p>
+    <p>first_name: {{ user1.first_name }}</p>
+    <p>last_name: {{ user1.last_name }}</p>
+    <p>last_login: {{ user1.last_login }}</p>
+    <p>date_joined: {{ user1.date_joined }}</p>
+    <p>is_active: {{ user1.is_active }}</p>
+    <p>is_staff: {{ user1.is_staff }}</p>
+    <h2>Опросы:</h2>
     <ul>
         {% for poll in poll_list %}
             <li>

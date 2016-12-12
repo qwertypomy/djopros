@@ -42,8 +42,8 @@ class PollResultsView(LoginRequiredMixin, generic.DetailView):
 
 @login_required
 def user(request, user_id):
-    user = get_object_or_404(User, pk=user_id)
-    context = {'user': user,'poll_list': Poll.objects.filter(user=user.id)}
+    user1 = get_object_or_404(User, pk=user_id)
+    context = {'user1': user1,'poll_list': Poll.objects.filter(user=user1.id)}
     return render(request, 'polls/profile.html', context)
 
 
@@ -76,7 +76,7 @@ def vote(request, poll_id, question_id):
         selected_answer = question.answer_set.get(pk=request.POST['choice'])
     except (KeyError, Answer.DoesNotExist):
         # Redisplay the question voting form.
-        context = { 'question': question, 'error_message': "You didn't select a choice.", }
+        context = { 'question': question, 'error_message': "You didn't select a choice."}
         return render(request, 'polls/question.html', context)
     else:
         selected_answer.users.add(request.user)
