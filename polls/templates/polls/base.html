@@ -7,7 +7,7 @@
 
 <body>
     {% if user.is_authenticated %}
-        <a href="#">Создать опрос</a>
+        <a href="/polls/new/">Создать опрос</a>
         <a href="/profile/">Профиль: {{ user.username }}</a>
     {% endif %}
 <header>

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views import generic
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render
@@ -91,3 +90,32 @@ class UserListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         answer = get_object_or_404(Answer, pk=self.kwargs['answer_id'])
         return answer.users.all()
+
+
+class PollCreate(generic.CreateView):
+    model = Poll
+    template_name = 'polls/base_form.html'
+    fields = ['title']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(PollCreate, self).form_valid(form)
+
+class QuestionCreate(generic.CreateView):
+    model = Question
+    template_name = 'polls/base_form.html'
+    fields = ['question_text']
+
+    def form_valid(self, form):
+        form.instance.poll = get_object_or_404(Poll, pk=self.kwargs['poll_id'])
+        return super(QuestionCreate, self).form_valid(form)
+
+
+class AnswerCreate(generic.CreateView):
+    model = Answer
+    template_name = 'polls/base_form.html'
+    fields = ['answer_text']
+
+    def form_valid(self, form):
+        form.instance.question = get_object_or_404(Question, pk=self.kwargs['question_id'])
+        return super(AnswerCreate, self).form_valid(form)

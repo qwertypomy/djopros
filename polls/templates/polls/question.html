@@ -3,7 +3,11 @@
 {% block title %}Вопрос: {{ question.question_text }}{% endblock %}
 
 {% block header %}
-<h1>{{ question.question_text }}</h1>
+    <h1><a href="/polls/{{ question.poll.id }}">{{ question.poll.title }}</a></h1>
+    <h2>{{ question.question_text }}</h2>
+    {% if user.id == question.poll.user.id %}
+        <a href="/polls/{{ question.poll.user.id }}/questions/{{ question.id }}/add_answer">Добавить ответ</a>
+    {% endif %}
 {% endblock %}
 
 {% block content %}

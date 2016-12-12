@@ -13,4 +13,8 @@ urlpatterns = [
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^polls/(?P<poll_id>[0-9]+)/questions/(?P<question_id>[0-9]+)/answers/(?P<answer_id>[0-9]+)/$',
         views.UserListView.as_view(), name='user_list'),
+    url(r'^polls/new/$', views.PollCreate.as_view(), name='poll_create'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/questions/new$', views.QuestionCreate.as_view(), name='question_create'),
+    url(r'^polls/(?P<poll_id>[0-9]+)/questions/(?P<question_id>[0-9]+)/add_answer$',
+        views.AnswerCreate.as_view(), name='answer_create'),
 ]
