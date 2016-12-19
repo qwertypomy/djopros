@@ -4,13 +4,13 @@
 
 {% block header %}
     {% if not user.is_authenticated %}
-        <a href="/soc/login/google-oauth2/?next=/">Login with Google account!</a>
+        <a id="google-account" href="/soc/login/google-oauth2/?next=/">Login with Google account!</a>
     {% endif %}
-    <h1>Top Polls:</h1>
 {% endblock %}
 
 {% block content %}
     {% if top_polls %}
+    <h1 class="top-polls">Популярные опросы:</h1>
         <ul>
             {% for poll in top_polls %}
                 <li>

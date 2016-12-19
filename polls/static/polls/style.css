@@ -1,0 +1,82 @@
+body {
+    background: rgba(186, 227, 224, 0.61);
+    padding: 0;
+    margin: 0;
+    color: #0C4762;
+    font-family: standart;
+}
+
+@font-face {
+    font-family: standart; /* Имя шрифта */
+    src: url(standart.otf); /* Путь к файлу со шрифтом */
+   }
+
+@font-face {
+    font-family: curs; /* Имя шрифта */
+    src: url(curs.otf); /* Путь к файлу со шрифтом */
+   }
+
+
+a {
+    text-decoration: none;
+    
+}
+
+li {
+    font-family: standart;
+    font-weight: bold;
+}
+
+li > a:link {color: #0C4762;}
+li > a:visited {color: #0C4762;}
+li > a:hover {color: #007CB9;}
+li > a:focus {color: #0C4762;}
+li > a:active {color: rgb(112, 153, 245);}
+
+#logo {
+    font-size: 2.2em;
+}
+
+#head {
+    text-align: justify;
+    letter-spacing: 1px;
+    height: 1em;
+    padding: 1.2em 2.5%;
+    background: #2c3e50;
+}
+
+.head-butt {
+    display: inline-block;
+    color: rgba(238, 255, 254, 0.87);
+}
+
+#google-account {
+    position: absolute;
+    top: 1.9em;
+    right: 2em;
+    color: rgba(238, 255, 254, 0.87);
+}
+
+#head-butt-right {
+    position: absolute;
+    top: 1.9em;
+    right: 2em;
+}
+
+#head-butt-right > a {
+    margin-left: 2.4em;
+}
+
+#content {
+    margin-left: 4em;
+    font-family: standart;
+    font-weight: bold;
+}
+
+#profile-container {
+    margin-top: 2em;
+}
+
+.profile-ident {
+    margin-left     : 1em;
+}

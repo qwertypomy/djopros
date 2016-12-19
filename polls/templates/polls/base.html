@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/polls/static/polls/style.css" />
+    <link rel="stylesheet" href="../../static/polls/style.css" />
     <title>{% block title %}{% endblock %}</title>
 </head>
-
 <body>
-    <a href="/">Opros: Главная</a>
-    {% if user.is_authenticated %}
-        <a href="/polls/new/">Создать опрос</a>
-        <a href="/profile/">Профиль: {{ user.username }}</a>
-    {% endif %}
-<header>
-    {% block header %}{% endblock %}
-</header>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+    <div id="head">
+        <a id="logo" class="head-butt" href="/">ОпросникЪ</a>
+        {% if user.is_authenticated %}
+            <div id="head-butt-right">
+                <a class="head-butt" href="/polls/new/">Создать опрос</a>
+                <a class="head-butt" href="/profile/">Профиль: {{ user.username }}</a>
+            </div>
+        {% endif %}
+        <header>
+            {% block header %}{% endblock %}
+    </header>
+    </div>
 <div id="content">
+    
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% block content %}{% endblock %}
 </div>
 </body>
