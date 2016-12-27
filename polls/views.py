@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     context_object_name = 'top_polls'
 
     def get_queryset(self):
-        return sorted(Poll.objects.all(), key=lambda a: a.users_watched_results.count())[-5:]
+        return sorted(Poll.objects.all(), key=lambda a: a.users_watched_results.count())[-20:]
 
 
 @login_required
