@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
     context_object_name = 'top_polls'
 
     def get_queryset(self):
-        return sorted(Poll.objects.all(), key=lambda a: a.users_watched_results.count())[-20:]
+        return sorted(Poll.objects.all(), key=lambda a: a.users_watched_results.count())[-5:]
 
 
 @login_required
@@ -75,7 +75,7 @@ def vote(request, poll_id, question_id):
         selected_answer = question.answer_set.get(pk=request.POST['choice'])
     except (KeyError, Answer.DoesNotExist):
         # Redisplay the question voting form.
-        context = { 'question': question, 'error_message': "You didn't select a choice."}
+        context = { 'question': question, 'error_message': "Выберите вариант"}
         return render(request, 'polls/question.html', context)
     else:
         selected_answer.users.add(request.user)
@@ -101,6 +101,12 @@ class PollCreate(generic.CreateView):
         form.instance.user = self.request.user
         return super(PollCreate, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(PollCreate, self).get_context_data(**kwargs)
+        ctx['text_form'] = 'Заголовок опроса:'
+        ctx['field_name'] = 'title'
+        return ctx
+
 class QuestionCreate(generic.CreateView):
     model = Question
     template_name = 'polls/base_form.html'
@@ -110,6 +116,11 @@ class QuestionCreate(generic.CreateView):
         form.instance.poll = get_object_or_404(Poll, pk=self.kwargs['poll_id'])
         return super(QuestionCreate, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(QuestionCreate, self).get_context_data(**kwargs)
+        ctx['text_form'] = 'Текст вопроса:'
+        ctx['field_name'] = 'question_text'
+        return ctx
 
 class AnswerCreate(generic.CreateView):
     model = Answer
@@ -119,3 +130,9 @@ class AnswerCreate(generic.CreateView):
     def form_valid(self, form):
         form.instance.question = get_object_or_404(Question, pk=self.kwargs['question_id'])
         return super(AnswerCreate, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        ctx = super(AnswerCreate, self).get_context_data(**kwargs)
+        ctx['text_form'] = 'Текст ответа:'
+        ctx['field_name'] = 'answer_text'
+        return ctx

@@ -5,9 +5,10 @@
 {% block header %}{% endblock %}
 
 {% block content %}
-    <form action="" method="post">
+    <form class="super_form" action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save" />
+        <p><label for="id_{{ field_name }}">{{ text_form }}</label>
+            <textarea name="{{ field_name }}" id="id_{{ field_name }}" required></textarea></p>
+        <input  class="inputik" type="submit" value="Сохранить" />
     </form>
 {% endblock %}

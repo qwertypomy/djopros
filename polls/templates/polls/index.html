@@ -4,7 +4,9 @@
 
 {% block header %}
     {% if not user.is_authenticated %}
-        <a id="google-account" href="/soc/login/google-oauth2/?next=/">Login with Google account!</a>
+        <a class="google-pic unlogged" href="/soc/login/google-oauth2/?next=/"></a>
+        <a id="google-account" href="/soc/login/google-oauth2/?next=/">Авторизация</a>
+        
     {% endif %}
 {% endblock %}
 
@@ -14,7 +16,7 @@
         <ul>
             {% for poll in top_polls %}
                 <li>
-                    <a href="/polls/{{ poll.id }}/">
+                    <a class="a-styles" href="/polls/{{ poll.id }}/">
                         {{ poll.title }}
                     </a>
                 </li>

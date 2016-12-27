@@ -4,16 +4,17 @@
 
 {% block header %}
     <h1>{{ poll.title }}</h1>
-    <p>{{ poll.question_set.all.count }} questions</p>
     {% if user.id == poll.user.id %}
-        <a href="/polls/{{ poll.id }}/questions/new">Добавить вопрос</a>
+        <a class="content-butts a-styles" href="/polls/{{ poll.id }}/questions/new">Добавить вопрос</a>
+    {% endif %}
+    {% if poll.question_set.first %}
+        <a class="content-butts a-styles" href={% url 'polls:question' poll.id poll.question_set.first.id %} {{poll.question_set.first}}>Редактировать</a>
+        <a class="content-butts a-styles" href="{% url 'polls:poll_results' poll.id %}">Посмотреть результаты</a>
+        <p>{{ poll.question_set.all.count }} вопросов</p>
     {% endif %}
     <p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
 {% endblock %}
 
 {% block content %}
-    {% if poll.question_set.first %}
-        <a href={% url 'polls:question' poll.id poll.question_set.first.id %} {{poll.question_set.first}}>Start</a>
-        <a href="{% url 'polls:poll_results' poll.id %}">Watch results</a>
-    {% endif %}
+    
 {% endblock %}

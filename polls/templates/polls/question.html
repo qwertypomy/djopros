@@ -3,21 +3,24 @@
 {% block title %}Вопрос: {{ question.question_text }}{% endblock %}
 
 {% block header %}
-    <h1><a href="/polls/{{ question.poll.id }}">{{ question.poll.title }}</a></h1>
-    <h2>{{ question.question_text }}</h2>
-    {% if user.id == question.poll.user.id %}
-        <a href="/polls/{{ question.poll.user.id }}/questions/{{ question.id }}/add_answer">Добавить ответ</a>
-    {% endif %}
+    <h1><a class="a-styles" href="/polls/{{ question.poll.id }}">{{ question.poll.title }}</a></h1>
+    <h2>{{ question.question_text }}</h2> 
+{% endblock %}
+{% block content %}
+        <form class="vote-me" action="{% url 'polls:vote' question.poll.id question.id %}" method="post">
+            {% csrf_token %}
+            {% for answer in question.answer_set.all %}
+                <input class="radio" type="radio" name="choice" id="a{{ forloop.counter }}" value="{{ answer.id }}" />
+                <label for="a{{ forloop.counter }}">
+                    {{ answer.answer_text }}
+                </label>
+                <br />
+                <br />
+            {% endfor %}
+            <input class="inputik" type="submit" value="Проголосовать" />
+        </form>
+        {% if user.id == question.poll.user.id %}
+            <a class="take-answer a-styles" href="/polls/{{ question.poll.user.id }}/questions/{{ question.id }}/add_answer">Добавить ответ</a>
+        {% endif %} 
 {% endblock %}
 
-{% block content %}
-    <form action="{% url 'polls:vote' question.poll.id question.id %}" method="post">
-        {% csrf_token %}
-        {% for answer in question.answer_set.all %}
-            <input type="radio" name="choice" id="a{{ forloop.counter }}" value="{{ answer.id }}" />
-            <label for="a{{ forloop.counter }}">
-                {{ answer.answer_text }}</label><br />
-        {% endfor %}
-        <input type="submit" value="Vote" />
-    </form>
-{% endblock %}

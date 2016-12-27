@@ -7,10 +7,13 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
+   <br />
+   <br />
+   <br />
+    <ul class="border ">
         {% for user in user_list %}
-            <li>
-                <a href="/users/{{ user.id }}/">
+            <li class="bord-main">
+                <a class="a-styles" href="/users/{{ user.id }}/">
                     {{ user.username }}
                 </a>
             </li>

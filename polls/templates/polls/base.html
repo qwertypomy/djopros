@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../static/polls/style.css" />
+   {% load static %}
+    <link rel="stylesheet" href="{% static "polls/style.css" %}" />
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div id="head">
+       <a class=" google-pic logged"></a>
         <a id="logo" class="head-butt" href="/">ОпросникЪ</a>
         {% if user.is_authenticated %}
             <div id="head-butt-right">
@@ -15,7 +17,7 @@
         {% endif %}
         <header>
             {% block header %}{% endblock %}
-    </header>
+        </header>
     </div>
 <div id="content">
     

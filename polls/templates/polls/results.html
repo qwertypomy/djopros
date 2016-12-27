@@ -1,20 +1,20 @@
 {% extends "polls/base.html" %}
 
 {% block title %}Результаты опроса {{ poll.title }}{% endblock %}
-
 {% block header %}
     <h1>{{ poll.title }}</h1>
-    <p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
 {% endblock %}
-
 {% block content %}
-    <ul>
+    <br />
+    <br />
+    <br />
+    <ul class="results-list border">
         {% for question in poll.question_set.all %}
-            <li>
+            <li class="bord-main">
                 {{ question.question_text }}
                 <ul>
                     {% for answer in answer_list.pop %}
-                        <li>
+                        <li class="bord-add">
                             {% if answer.users.all %}
                                 {{ answer.answer_text }} -
                                 <a href="/polls/{{ poll.id }}/questions/{{ question.id }}/answers/{{ answer.id }}/"
@@ -33,4 +33,10 @@
             </li>
         {% endfor %}
     </ul>
+<p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
+<br />
+<br />
+<br />
+<br />
 {% endblock %}
+
