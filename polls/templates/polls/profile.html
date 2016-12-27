@@ -14,10 +14,7 @@
         <p class="profile-ident">e-mail: {{ user1.email }}</p>
         <p class="profile-ident">Дата регистрации: {{ user1.date_joined }}</p>
         <p class="profile-ident">Последняя авторизация: {{ user1.last_login }}</p>
-        {% if user1.is_active %}<p class="profile-ident">В сети</p>{% else %}<p class="profile-ident">Не в сети</p>{% endif %}
         {% if user1.is_staff %}<p class="profile-ident">Админ</p>{% else %}<p></p>{% endif %}
-        <!--<p class="profile-ident">Онлайн: {{ user1.is_active }}</p>
-        <p class="profile-ident">Админ: {{ user1.is_staff }}</p> -->
         {% if poll_list %}
             <h2>Популярные опросы:</h2>
         {% endif %}

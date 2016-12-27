@@ -1,9 +1,38 @@
-body {
+body {  
     background: rgba(186, 227, 224, 0.61);
     padding: 0;
     margin: 0;
     color: #0C4762;
     font-family: standart;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#content {
+    flex: 1 0 auto;
+}
+
+#footer {
+    position: relative;
+    background: #02354d;
+    height: 3em;
+    flex: 0 0 auto;
+    color: #ccc;
+}
+
+#footer > div {
+    position:absolute;
+    top: 1em;
+    right: 3em;
 }
 
 @font-face {
@@ -121,6 +150,15 @@ li {
     width: 100%;
     text-align: center;
 }
+
+.quiz-text > p {
+    margin-right: 9em;
+}
+
+textarea {
+  vertical-align: middle;
+}
+
 
 #id_question_text {
     width: 20em;
@@ -244,6 +282,8 @@ li {
 }
 
 .bord-add:hover {
-   border-left: 10px solid rgba(238, 255, 254, 0.87); 
+    border-left: 10px solid rgba(238, 255, 254, 0.87); 
 }
-    
+
+
+

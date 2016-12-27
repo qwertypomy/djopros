@@ -6,9 +6,10 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+   <div id="wrapper">
     <div id="head">
-       <a class=" google-pic logged"></a>
-        <a id="logo" class="head-butt" href="/">ОпросникЪ</a>
+       <a class=" google-pic logged" href="/profile/"></a>
+       <a id="logo" class="head-butt" href="/">ОпросникЪ</a>
         {% if user.is_authenticated %}
             <div id="head-butt-right">
                 <a class="head-butt" href="/polls/new/">Создать опрос</a>
@@ -20,9 +21,12 @@
         </header>
     </div>
 <div id="content">
-    
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     {% block content %}{% endblock %}
 </div>
+    <div id="footer">
+        <div>Подвал Михаила Подвального 2016 ©</div>
+    </div>
+    </div>
 </body>
 </html>
