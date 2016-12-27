@@ -1,6 +1,6 @@
 {% extends "polls/base.html" %}
 
-{% block title %}Вопрос: {{ question.question_text }}{% endblock %}
+{% block title %}{{ question.question_text }}{% endblock %}
 
 {% block header %}
     <h1><a class="a-styles" href="/polls/{{ question.poll.id }}">{{ question.poll.title }}</a></h1>

@@ -1,6 +1,6 @@
 {% extends "polls/base.html" %}
 
-{% block title %}Опрос: {{ poll.title }}{% endblock %}
+{% block title %}{{ poll.title }}{% endblock %}
 
 {% block header %}
     <h1>{{ poll.title }}</h1>
@@ -13,8 +13,4 @@
         <p>{{ poll.question_set.all.count }} вопросов</p>
     {% endif %}
     <p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
-{% endblock %}
-
-{% block content %}
-    
 {% endblock %}
