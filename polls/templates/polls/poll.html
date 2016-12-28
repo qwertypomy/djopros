@@ -10,7 +10,7 @@
     {% if poll.question_set.first %}
         <a class="content-butts a-styles" href={% url 'polls:question' poll.id poll.question_set.first.id %} {{poll.question_set.first}}>Начать опрос</a>
         <a class="content-butts a-styles" href="{% url 'polls:poll_results' poll.id %}">Посмотреть результаты</a>
-        <p>{{ poll.question_set.all.count }} вопросов</p>
+        <p>{{ voprosov }}</p>
     {% endif %}
     <p>Created by <a href="/users/{{ poll.user.id }}">{{ poll.user }}</a>, {{ poll.pub_date }}</p>
 {% endblock %}

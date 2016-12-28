@@ -20,7 +20,8 @@ class IndexView(generic.ListView):
 @login_required
 def poll(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    context = {'poll':poll}
+    voprosov = declension(poll.question_set.all().count(), ['вопрос', 'вопроса', 'вопросов'])
+    context = {'poll':poll, 'voprosov':voprosov}
     return render(request, 'polls/poll.html', context)
 
 
@@ -136,3 +137,18 @@ class AnswerCreate(generic.CreateView):
         ctx['text_form'] = 'Текст ответа:'
         ctx['field_name'] = 'answer_text'
         return ctx
+
+
+def declension(x, y):
+    inumber = x % 100
+    if inumber >= 11 and inumber <=19:
+        y = y[2]
+    else:
+        iinumber = inumber % 10
+        if iinumber == 1:
+            y = y[0]
+        elif iinumber == 2 or iinumber == 3 or iinumber == 4:
+            y = y[1]
+        else:
+            y = y[2]
+    return(str(x) + " " + y)
